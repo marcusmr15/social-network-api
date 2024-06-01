@@ -1,0 +1,13 @@
+{
+    "name": "social-media-api",
+    "version": "1.0.0",
+    "description": "A social media API using a NoSQL database.",
+    "main": "app.js",
+    "scripts": {
+      "start": "node server.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Marcos Munoz",
+    "license": "UNLICENSED"
+  }
+  
