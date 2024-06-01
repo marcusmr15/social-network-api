@@ -10,8 +10,7 @@ if (!mongoURI) {
 
 // Connecting to the MongoDB database using the MongoDB URI provided in the environment variables
 mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  // Remove useNewUrlParser and useUnifiedTopology options
 })
 .then(() => {
   console.log('MongoDB Connected...');
