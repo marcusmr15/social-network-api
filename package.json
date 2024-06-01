@@ -4,10 +4,16 @@
     "description": "A social media API using a NoSQL database.",
     "main": "app.js",
     "scripts": {
-      "start": "node server.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Marcos Munoz",
-    "license": "UNLICENSED"
-  }
-  
+    "license": "UNLICENSED",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.20.2",
+        "express": "^4.19.2",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^8.4.1"
+    }
+}
