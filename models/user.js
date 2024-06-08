@@ -7,8 +7,8 @@ const userSchema = new Schema(
     // The username of the user, required, unique, and trimmed
     username: {
       type: String,
-      required: true,
       unique: true,
+      required: true,
       trim: true,
     },
     // The email of the user, required, unique, and validated using a regular expression
@@ -18,22 +18,22 @@ const userSchema = new Schema(
       unique: true,
       validate: {
         validator: function(v) {
-          return /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(v);
+          return /[\w\&\!\$\(\)"`'.+-]+@[\w.-]+/.test(v);
         }
       }
     },
-    // Array of user IDs representing friends, referencing the 'User' model
-    friends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      }
-    ],
     // Array of thought IDs associated with the user, referencing the 'Thought' model
     thoughts: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Thought',
+      }
+    ],
+    // Array of user IDs representing friends, referencing the 'User' model
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
       }
     ],
   },

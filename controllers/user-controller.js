@@ -26,7 +26,7 @@ const UserController = {
 
   // Handler for the "update user by ID" API endpoint
   updateUserById(req, res) {
-    User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+    User.findOneAndUpdate({ _id: req.params.userId }, req.body, { new: true })
       .then(userData => {
         if (!userData) {
           return res.status(404).json({ message: 'User not found' });
@@ -38,7 +38,7 @@ const UserController = {
 
   // Handler for the "delete user" API endpoint
   deleteUserById(req, res) {
-    User.findOneAndDelete({ _id: req.params.id })
+    User.findOneAndDelete({ _id: req.params.userId })
       .then(userData => {
         if (!userData) {
           return res.status(404).json({ message: 'User not found' });

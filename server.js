@@ -1,4 +1,5 @@
 // Import required packages and files
+require('dotenv').config(); // Add this line to load environment variables from .env file
 const express = require('express');
 const db = require('./config/connection');
 const routes = require('./routes');
@@ -21,3 +22,4 @@ db.once('open', () => {
     console.log(`API server running on port ${PORT}!`);
   });
 });
+
