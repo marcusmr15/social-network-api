@@ -13,6 +13,19 @@ const ThoughtController = {
     }
   },
 
+  // Handler for the "get all reactions" API endpoint
+  async getAllReactions(req, res) {
+    try {
+      const thoughts = await Thought.find({});
+      const allReactions = thoughts.reduce((reactions, thought) => {
+        return reactions.concat(thought.reactions);
+      }, []);
+      res.json(allReactions);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
   // Handler for the "get thought by ID" API endpoint
   async getThoughtsById(req, res) {
     try {
@@ -27,10 +40,24 @@ const ThoughtController = {
     }
   },
 
+  // Method to get thoughts by user ID
+  async getThoughtsByUser(req, res) {
+    try {
+      const user = await User.findById(req.params.userId).populate('thoughts');
+      if (!user) {
+        return res.status(404).json({ message: 'No user found with this ID' });
+      }
+      res.json(user.thoughts);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
   // Handler for the "create thought" API endpoint
   async createThought(req, res) {
     try {
       const thought = await Thought.create(req.body);
+      await User.findByIdAndUpdate(req.body.userId, { $push: { thoughts: thought._id } }, { new: true });
       res.status(201).json(thought);
     } catch (err) {
       res.status(500).json(err);
@@ -94,3 +121,4 @@ const ThoughtController = {
 
 // Export ThoughtController
 module.exports = ThoughtController;
+
