@@ -1,5 +1,5 @@
 // Importing required models
-const { Thought } = require('../models');
+const { Thought, User } = require('../models');
 
 // Define the ThoughtController object, which contains methods for handling various API requests related to thoughts
 const ThoughtController = {
